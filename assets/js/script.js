@@ -10,3 +10,20 @@ const searchHistoryList = searchHistory.querySelector("ul");
 const currentWeatherContainer = document.getElementById("current-weather-container");
 const forecastContainer = document.getElementById("forecast-container");
 
+// Initialize search history array
+let searchHistoryArr = [];
+
+// Event listener for search form submission
+searchForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  const searchTerm = searchInput.value.trim();
+  if (searchTerm !== "") {
+    searchCity(searchTerm);
+  }
+});
+
+// Event listener for search history clicks
+searchHistoryList.addEventListener("click", function(event) {
+  const searchTerm = event.target.textContent;
+  searchCity(searchTerm);
+});
