@@ -1,6 +1,7 @@
 // API key (insert your own API key here)
 const API_KEY = "096e002965be779548e85ad4cca06d1c";
 
+
 // Get DOM elements
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
