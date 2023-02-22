@@ -59,4 +59,20 @@ function searchCity(searchTerm) {
       });
   }
   
+  // Function to add search term to search history
+  function addSearchTerm(searchTerm) {
+    // Add search term to array and local storage
+    searchHistoryArr.unshift(searchTerm);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArr));
   
+    // Clear search history list
+    searchHistoryList.innerHTML = "";
+  
+    // Display updated search history
+    searchHistoryArr.forEach(searchTerm => {
+      const li = document.createElement("li");
+      li.textContent = searchTerm;
+      searchHistoryList.appendChild(li);
+    });
+  }
+    
