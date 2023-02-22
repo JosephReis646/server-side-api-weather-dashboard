@@ -75,4 +75,46 @@ function searchCity(searchTerm) {
       searchHistoryList.appendChild(li);
     });
   }
-    
+    // Function to display current weather data
+  function displayCurrentWeather(data) {
+    const cityName = data.name;
+    const date = new Date(data.dt * 1000).toLocaleDateString("en-US", {month: "long", day: "numeric", year: "numeric"});
+    const iconUrl = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+    const temp = `${Math.round((data.main.temp - 273.15) * 9/5 + 32)}\xB0F`;
+    const humidity = `${data.main.humidity}%`;
+    const windSpeed = `${Math.round(data.wind.speed)} mph`;
+  
+    const currentWeatherHtml = `
+      <div class="current-weather-item">
+        <h3>${cityName}</h3>
+        <p>${date}</p>
+        <img src="${iconUrl}" alt="${data.weather[0].description}">
+        <p class="temp">${temp}</p>
+        <p>Humidity: ${humidity}</p>
+        <p>Wind Speed: ${windSpeed}</p>
+      </div>
+    `;
+    currentWeatherContainer.innerHTML = currentWeatherHtml;
+  }
+   // Function to display forecast data
+   function displayForecast(data) {
+    const forecastData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+    const forecastHtml = forecastData.map(item => {
+      const date = new Date(item.dt * 1000).toLocaleDateString("en-US", {month: "numeric", day: "numeric"});
+      const iconUrl = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
+      const temp = `${Math.round((item.main.temp - 273.15) * 9/5 + 32)}\xB0F`;
+      const humidity = `${item.main.humidity}%`;
+      const windSpeed = `${Math.round(item.wind.speed)} mph`;
+      return `
+        <div class="forecast-item">
+          <h3>${date}</h3>
+          <img src="${iconUrl}" alt="${item.weather[0].description}">
+          <p class="temp">${temp}</p>
+          <p>Humidity: ${humidity}</p>
+          <p>Wind Speed: ${windSpeed}</p>
+        </div>
+      `;
+    }).join("");
+    forecastContainer.innerHTML = forecastHtml;
+  }
+
