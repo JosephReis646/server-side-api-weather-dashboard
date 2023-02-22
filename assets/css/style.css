@@ -25,3 +25,50 @@
     margin-bottom: 20px;
   }
   
+  #search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 60%;
+  }
+  
+  #search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #search-button:hover {
+    background-color: #0062cc;
+  }
+  
+  #search-history {
+    margin-bottom: 20px;
+  }
+  
+  #search-history h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  #search-history ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #search-history li {
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  #search-history li:hover {
+    text-decoration: underline;
+  }
+  
+  
