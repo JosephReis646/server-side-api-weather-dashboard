@@ -71,4 +71,73 @@
     text-decoration: underline;
   }
   
+  #current-weather h2,
+  #forecast h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  #current-weather-container,
+  #forecast-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .current-weather-item,
+  .forecast-item {
+    width: 24%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .current-weather-item h3,
+  .forecast-item h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .current-weather-item img,
+  .fore
+  .current-weather-item img,
+  .forecast-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .current-weather-item p,
+  .forecast-item p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .current-weather-item .temp,
+  .forecast-item .temp {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .current-weather-item .humidity,
+  .forecast-item .humidity {
+    font-size: 14px;
+  }
+    
+  #forecast-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 20px 0;
+  }
+  
+  .forecast-item {
+    flex: 0 0 20%;
+    margin-right: 10px;
+    text-align: center;
+  }
+  
   
