@@ -30,53 +30,53 @@ searchHistoryList.addEventListener("click", function(event) {
 
 // Function to search for city weather data
 function searchCity(searchTerm) {
-    // Add search term to search history
-    addSearchTerm(searchTerm);
-  
-    // Clear previous weather data
-    clearWeatherData();
-  
-    // API call to retrieve current weather data for the city
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        displayCurrentWeather(data);
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Error retrieving weather data. Please try again.");
-      });
-  
-    // API call to retrieve 5-day forecast data for the city
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchTerm}&appid=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        displayForecast(data);
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Error retrieving weather data. Please try again.");
-      });
-  }
-  
-  // Function to add search term to search history
-  function addSearchTerm(searchTerm) {
-    // Add search term to array and local storage
-    searchHistoryArr.unshift(searchTerm);
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArr));
-  
-    // Clear search history list
-    searchHistoryList.innerHTML = "";
-  
-    // Display updated search history
-    searchHistoryArr.forEach(searchTerm => {
-      const li = document.createElement("li");
-      li.textContent = searchTerm;
-      searchHistoryList.appendChild(li);
+  // Add search term to search history
+  addSearchTerm(searchTerm);
+
+  // Clear previous weather data
+  clearWeatherData();
+
+  // API call to retrieve current weather data for the city
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+      displayCurrentWeather(data);
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Error retrieving weather data. Please try again.");
     });
-  }
-    // Function to display current weather data
-  function displayCurrentWeather(data) {
+
+  // API call to retrieve 5-day forecast data for the city
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchTerm}&appid=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+      displayForecast(data);
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Error retrieving weather data. Please try again.");
+    });
+}
+
+// Function to add search term to search history
+function addSearchTerm(searchTerm) {
+  // Add search term to array and local storage
+  searchHistoryArr.unshift(searchTerm);
+  localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArr));
+
+  // Clear search history list
+  searchHistoryList.innerHTML = "";
+
+  // Display updated search history
+  searchHistoryArr.forEach(searchTerm => {
+    const li = document.createElement("li");
+    li.textContent = searchTerm;
+    searchHistoryList.appendChild(li);
+  });
+}
+  // Function to display current weather data
+function displayCurrentWeather(data) {
     const cityName = data.name;
     const date = new Date(data.dt * 1000).toLocaleDateString("en-US", {month: "long", day: "numeric", year: "numeric"});
     const iconUrl = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
@@ -96,8 +96,9 @@ function searchCity(searchTerm) {
     `;
     currentWeatherContainer.innerHTML = currentWeatherHtml;
   }
-   // Function to display forecast data
-   function displayForecast(data) {
+  
+// Function to display forecast data
+function displayForecast(data) {
     const forecastData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
     const forecastHtml = forecastData.map(item => {
       const date = new Date(item.dt * 1000).toLocaleDateString("en-US", {month: "numeric", day: "numeric"});
@@ -117,21 +118,20 @@ function searchCity(searchTerm) {
     }).join("");
     forecastContainer.innerHTML = forecastHtml;
   }
-
-  // Function to clear weather data
-  function clearWeatherData() {
-    currentWeatherContainer.innerHTML = "";
-    forecastContainer.innerHTML = "";
-    }
-    
-    // Load search history from local storage
-    if (localStorage.getItem("searchHistory")) {
-    searchHistoryArr = JSON.parse(localStorage.getItem("searchHistory"));
-    searchHistoryArr.forEach(searchTerm => {
-    const li = document.createElement("li");
-    li.textContent = searchTerm;
-    searchHistoryList.appendChild(li);
-    });
-    }
   
+// Function to clear weather data
+function clearWeatherData() {
+currentWeatherContainer.innerHTML = "";
+forecastContainer.innerHTML = "";
+}
+
+// Load search history from local storage
+if (localStorage.getItem("searchHistory")) {
+searchHistoryArr = JSON.parse(localStorage.getItem("searchHistory"));
+searchHistoryArr.forEach(searchTerm => {
+const li = document.createElement("li");
+li.textContent = searchTerm;
+searchHistoryList.appendChild(li);
+});
+}
   
