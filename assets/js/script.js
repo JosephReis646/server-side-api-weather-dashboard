@@ -118,3 +118,20 @@ function searchCity(searchTerm) {
     forecastContainer.innerHTML = forecastHtml;
   }
 
+  // Function to clear weather data
+  function clearWeatherData() {
+    currentWeatherContainer.innerHTML = "";
+    forecastContainer.innerHTML = "";
+    }
+    
+    // Load search history from local storage
+    if (localStorage.getItem("searchHistory")) {
+    searchHistoryArr = JSON.parse(localStorage.getItem("searchHistory"));
+    searchHistoryArr.forEach(searchTerm => {
+    const li = document.createElement("li");
+    li.textContent = searchTerm;
+    searchHistoryList.appendChild(li);
+    });
+    }
+  
+  
